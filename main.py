@@ -1,7 +1,7 @@
 import despesasDAO as dp
 
 def main():
-  dp.verificar_csv()
+  dp.criar_csv()
   
   while True:
     print("--- GERENCIADOR DE DESPESAS ---")

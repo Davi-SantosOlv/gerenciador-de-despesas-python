@@ -2,7 +2,20 @@ import csv
 import os
 
 def visualizar_saldo():
-  pass
+  try:
+    with open("despesas.csv", "r", newline="", encoding="utf-8") as arq:
+      c = csv.DictReader(arq)
+    
+      saldo = 0
+      for registro in c:
+        saldo += float(registro["valor"])
+    
+      print(f"Saldo: ${saldo:.2f}")
+  
+  except FileNotFoundError:
+    print("O arquivo não foi encontrado! Gerando um novo arquivo...\n")
+    criar_csv()
+
 
 def anotar_despesa():
   while True:
@@ -11,11 +24,11 @@ def anotar_despesa():
       if valor <= 0:
         print("Digite um valor maior ou igual a zero!")
         continue
-      valor *= -1
+      else:
+        valor *= -1
 
       descricao = input("Digite a descrição: ")
 
-      verificar_csv()
       with open("despesas.csv", "a", newline="", encoding="utf-8") as arq:
         c = csv.writer(arq)
         c.writerow([valor, descricao])
@@ -23,15 +36,34 @@ def anotar_despesa():
       break
 
     except ValueError:
-      print("Valor Inválido! Digite novamente...")
-
-
-  
-    
+      print("Input Inválido! Digite novamente...")
+    except FileNotFoundError:
+        print("O arquivo não foi encontrado! Gerando um novo arquivo...")
+        criar_csv()
+ 
 def anotar_receita():
-  pass
+  while True:
+    try:
+      valor = float(input("Digite o valor da receita: ").replace(",", "."))
+      if valor <= 0:
+        print("Digite um valor maior ou igual a zero!")
+        continue
+  
+      descricao = input("Digite a descrição: ")
+  
+      with open("despesas.csv", "a", newline="", encoding="utf-8") as arq:
+        c = csv.writer(arq)
+        c.writerow([valor, descricao])
+  
+      break
+  
+    except ValueError:
+      print("Input Inválido! Digite novamente...")
+    except FileNotFoundError:
+        print("O arquivo não foi encontrado! Gerando um novo arquivo...")
+        criar_csv()
 
-def verificar_csv():
+def criar_csv():
   if not os.path.exists("despesas.csv"):
     open("despesas.csv", "w")
 
