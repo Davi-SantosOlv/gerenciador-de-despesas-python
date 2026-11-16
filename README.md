@@ -1,6 +1,6 @@
 # 📊 Gerenciador de Despesas com Python
 
-Este programa é um programa com Interface em Linha de Comando (CLI) de um gerenciador de despesas pessoal. Os registros são guardados no arquivo `despesas.csv`, de tabela única. É possível visualizar o saldo do usuário, e anotar tanto gastos quanto receita. Não há uma função de exclusão para os registros.
+Este é um programa com Interface em Linha de Comando (CLI) de um gerenciador de despesas pessoal. Os registros são guardados no arquivo `despesas.csv`, de tabela única. É possível visualizar o saldo do usuário, e anotar tanto gastos quanto receita. Não há uma função de exclusão para os registros.
 
 ## 📚 Conceitos praticados
 
